@@ -1,0 +1,108 @@
+<div class="container statuscheck">
+    <div class="row ">
+        <div class="col-12 mx-auto">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-9">
+                    <div class="col-12 py-5">
+                        <h2 class="text-center">Check your Policy Status</h2>
+                    </div>
+                    <div class="col-12 statuschecksearch p-0 my-5">
+                        <p class="climbg-color"><i class="ml-3">Claim Status Check</i></p>
+                        <p *ngIf="policydetails?.statusCode ==404" class="text-danger text-center">
+                            {{policydetails?.message}}</p>
+                        <div class="p-3">
+                            <form [formGroup]="statuscheck">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Claim Reference Number<span
+                                                class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            <input type="email"
+                                                [ngClass]="{'is-invalid': statuscheck?.controls?.policynumber?.touched && statuscheck?.controls?.policynumber?.invalid}"
+                                                formControlName="policynumber" class="form-control" id="inputEmail4">
+
+                                            <div class="invalid-feedback">
+                                                <span
+                                                    *ngIf="statuscheck?.controls?.policynumber?.errors?.required">Please
+                                                    enter correct policy number</span> </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="form-group">
+                                            <button type="submit" [disabled]="statuscheck.invalid"
+                                                class="btn btn-success bus-button btn-block"
+                                                (click)="getPolicy()">Search<i class="fa fa-refresh fa-spin"
+                                                    *ngIf="getPolicyspin"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-12 statuschecksearch p-0 my-5" *ngIf="policydetails?.statusCode ==200">
+                        <p class="climbg-color"><i class="ml-3">Details of your Claim</i></p>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p>Policy Holder Name: <b>{{policydetails?.policyHolderName}}</b></p>
+                                </div>
+                                <div class="col-sm">
+                                    <p>Dependent Name: <b>{{policydetails?.policyDependentName}}</b></p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p>Policy Number: <b>{{policydetails?.policyNo}}</b></p>
+                                </div>
+                                <div class="col-sm">
+                                    <p>Policy Amount: <b>{{policydetails?.policyAmount}}</b></p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p>Diagnosis: <b>{{policydetails?.diagosis}}</b></p>
+                                </div>
+                                <div class="col-sm">
+                                    <p>Admission Date: <b>{{policydetails?.admissionDate}}</b></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p>Claim Number: <b>{{policydetails?.claimNumber}}</b></p>
+                                </div>
+                                <div class="col-sm">
+                                    <p>Claim Amount: <b>{{policydetails?.claimAmount}}</b></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p>Discharge Date: <b>{{policydetails?.dischargeDate}}</b></p>
+                                </div>
+                                <div class="col-sm">
+                                    <p>Discharge Detail: <b>{{policydetails?.dischargeDetail}}</b></p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 statuschecksearch p-0 my-5" *ngIf="policydetails?.statusCode ==200">
+                        <p class="climbg-color"><i class="ml-3">Track Your Status</i></p>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

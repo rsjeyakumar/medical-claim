@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 
 import { HttpService } from '../../shared/services/http.service';
 import { CommunicationService } from '../../shared/services/communication.service';
+import { ENDPOINTS } from 'src/app/shared/services/end-points.enum';
+
+import { USER } from '../../models/app.models';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +40,7 @@ export class LoginComponent implements OnInit {
 
       this.router.navigate(['/home']);
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['/login']);
     }
 
   }
@@ -49,46 +52,34 @@ export class LoginComponent implements OnInit {
 
   /* Login api submit */
   loginSubmit() {
-    const queryparams = '?username=' + this.loginForm.value.username + '&password=' + this.loginForm.value.password;
-    const apiEndpointUrl = this.http.apiUrl + this.http.userDetails + queryparams;
+
+    const queryparams = {
+      userId: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    };
     this.loginSpin = true;
-    this.http.readData(apiEndpointUrl).subscribe(
-      (res: object[]) => {
+    this.http.createData(ENDPOINTS.LOGIN, queryparams).subscribe(
+      (res: USER) => {
         this.loginSpin = false;
-        if (res.length === 1) {
+        if (res.statusCode === 200) {
           const data = {
             userDetails: true
           };
           sessionStorage.clear();
           this.loginvalidation = false;
-          sessionStorage.setItem('user', JSON.stringify(res[0]));
+          sessionStorage.setItem('user', JSON.stringify(res));
           this.passdata.sendMessage(data);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/claim-list']);
         } else {
           sessionStorage.clear();
           this.loginvalidation = true;
         }
       }
     );
+
   }
 
-  /* Register api submit */
-  registerFormSubmit() {
-    this.registerSpin = true;
-    const apiEndpointUrl = this.http.apiUrl + this.http.userDetails;
-    this.http.createData(apiEndpointUrl, this.registerForm.value).subscribe(
-      (res) => {
-        this.registerSpin = false;
-        console.log(res);
-      }
-    );
-  }
 
-  /* Reset Register form */
-  resetRegiserform() {
-    this.registerSpin = false;
-    this.registerForm.reset();
-  }
 
 
 }

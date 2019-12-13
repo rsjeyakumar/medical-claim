@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { HttpService } from './http.service';
 
-xdescribe('HttpService', () => {
+describe('HttpService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    providers: [HttpClient, HttpHeaders]
+    providers: [],
+    imports: [HttpClientTestingModule]
   }));
 
   it('should be created', () => {

@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedModule } from '../../../shared/shared.module';
-import { LandingComponent } from './landing.component';
+import { SharedModule } from '../../shared/shared.module';
+import { StatusCheckComponent } from './status-check.component';
 
-describe('LandingComponent', () => {
-  let component: LandingComponent;
-  let fixture: ComponentFixture<LandingComponent>;
+describe('StatusCheckComponent', () => {
+  let component: StatusCheckComponent;
+  let fixture: ComponentFixture<StatusCheckComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingComponent],
+      declarations: [StatusCheckComponent],
       imports: [SharedModule]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingComponent);
+    fixture = TestBed.createComponent(StatusCheckComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

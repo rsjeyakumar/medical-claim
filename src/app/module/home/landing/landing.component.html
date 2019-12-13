@@ -1,13 +1,155 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            One of three columns
+<div class="container landingpage">
+    <div class="row ">
+        <div class="col-12 mx-auto">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-9">
+                    <div class="col-12 py-5">
+                        <h2 class="text-center">Raise Claim</h2>
+                    </div>
+                    <div class="col" *ngIf="policySubmission?.statusCode ">
+                        <p [ngClass]="{'text-success': policySubmission?.statusCode === 200,' text-danger': policySubmission?.statusCode === 400}"
+                            *ngIf="policySubmission?.statusCode">{{policySubmission?.message}}
+
+                        </p>
+                        <button class="btn btn-success" [routerLink]="['/status-check']">Check your Claim
+                            status</button>
+                    </div>
+                    <form [formGroup]="cliamForm" *ngIf="!policySubmission?.statusCode">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Name<span class="text-danger">*</span></label>
+                                <div class="form-group">
+                                    <input type="email"
+                                        [ngClass]="{'is-invalid': cliamForm?.controls?.name?.touched && cliamForm?.controls?.name?.invalid}"
+                                        formControlName="name" class="form-control" id="inputEmail4">
+
+                                    <div class="invalid-feedback">
+                                        <span *ngIf="cliamForm?.controls?.name?.errors?.required">Please
+                                            enter correct Name.</span> </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Policy Number<span class="text-danger">*</span></label>
+                                <div class="form-group">
+                                    <input type="email"
+                                        [ngClass]="{'is-invalid': cliamForm?.controls?.policynumber?.touched && cliamForm?.controls?.policynumber?.invalid}"
+                                        formControlName="policynumber" class="form-control" id="inputEmail4">
+
+                                    <div class="invalid-feedback">
+                                        <span *ngIf="cliamForm?.controls?.policynumber?.errors?.required">Please
+                                            enter correct Policy Number.</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Diagnosis<span class="text-danger">*</span></label>
+                                <div class="form-group">
+                                    <input type="email"
+                                        [ngClass]="{'is-invalid': cliamForm?.controls?.diagnosis?.touched && cliamForm?.controls?.diagnosis?.invalid}"
+                                        formControlName="diagnosis" class="form-control" id="inputEmail4">
+
+                                    <div class="invalid-feedback">
+                                        <span *ngIf="cliamForm?.controls?.diagnosis?.errors?.required">Please enter
+                                            diagnosis details.</span> </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Admission Date<span class="text-danger">*</span></label>
+                                <p-calendar styleClass="prime-calendar form-control" formControlName="admissiondate"
+                                    [ngClass]="{'is-invalid': cliamForm?.controls?.admissiondate?.touched && cliamForm?.controls?.admissiondate?.invalid}"
+                                    dateFormat="dd/mm/yy" [maxDate]="date" [showIcon]="true">
+                                </p-calendar>
+                                <div class="invalid-feedback">
+                                    <span *ngIf="cliamForm?.controls?.admissiondate?.errors?.required">Please enter
+                                        correct admission date.</span> </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Discharge Date<span class="text-danger">*</span></label>
+                                <p-calendar styleClass="prime-calendar form-control" formControlName="dischargedate"
+                                    [ngClass]="{'is-invalid': cliamForm?.controls?.dischargedate?.touched && cliamForm?.controls?.dischargedate?.invalid}"
+                                    dateFormat="dd/mm/yy" [maxDate]="date" [showIcon]="true">
+                                </p-calendar>
+                                <div class="invalid-feedback">
+                                    <span *ngIf="cliamForm?.controls?.dischargedate?.errors?.required">Please enter
+                                        correct discharge date.</span> </div>
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Total Claim Amount<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="totalclaimamount"
+                                    [ngClass]="{'is-invalid': cliamForm?.controls?.totalclaimamount?.touched && cliamForm?.controls?.totalclaimamount?.invalid}" />
+
+                                <div class="invalid-feedback">
+                                    <span *ngIf="cliamForm?.controls?.totalclaimamount?.errors?.required">Please enter
+                                        correct claim amount.</span> </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Hospital Name<span class="text-danger">*</span></label>
+                                <select id="inputState"
+                                    [ngClass]="{'is-invalid': cliamForm?.controls?.hospitalname?.touched && cliamForm?.controls?.hospitalname?.invalid}"
+                                    formControlName="hospitalname" class="form-control ">
+                                    <option selected>Choose...</option>
+                                    <option *ngFor="let hospital of hospitals" [value]="hospital.id">{{hospital.name}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <span *ngIf="cliamForm?.controls?.hospitalname?.errors?.required">Please select
+                                        Hospital.</span> </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Ailment<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="ailment"
+                                    [ngClass]="{'is-invalid': cliamForm?.controls?.ailment?.touched && cliamForm?.controls?.ailment?.invalid}" />
+
+                                <div class="invalid-feedback">
+                                    <span *ngIf="cliamForm?.controls?.ailment?.errors?.required">Please enter Ailment
+                                        details.</span> </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputAddress">Discharge Details<span class="text-danger">*</span></label>
+                                <textarea class="form-control" formControlName="dischargedetails"
+                                    [ngClass]="{'is-invalid': cliamForm?.controls?.dischargedetails?.touched && cliamForm?.controls?.dischargedetails?.invalid}">
+</textarea>
+                                <div class="invalid-feedback">
+                                    <span *ngIf="cliamForm?.controls?.dischargedetails?.errors?.required">Please enter
+                                        discharge details.</span> </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="p-0">Fields marked with <span class="text-danger">*</span> are mandatory</p>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <button type="submit" class="btn btn-success bus-button btn-block"
+                                    (click)="reset()">Reset<i class="fa fa-refresh fa-spin"
+                                        *ngIf="submitSpin"></i></button>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button type="submit" [disabled]="cliamForm.invalid"
+                                    class="btn btn-success bus-button btn-block" (click)="submitClaim()">Submit Claim<i
+                                        class="fa fa-refresh fa-spin" *ngIf="submitSpin"></i></button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
         </div>
-        <div class="col-sm">
-            One of three columns
-        </div>
-        <div class="col-sm">
-            One of three columns
-        </div>
+        <!--/col-->
     </div>
+    <!--/row-->
 </div>

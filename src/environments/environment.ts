@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/'
+  apiUrl: 'http://10.117.189.71:8080/medicalclaim/'
 };
+//apiUrl:'http://10.117.189.71:8080/medicalclaim'
 
+//apiUrl: 'http://localhost:3000/
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

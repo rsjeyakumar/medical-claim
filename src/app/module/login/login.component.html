@@ -5,7 +5,12 @@
                 <!-- form card login -->
                 <div class="col-12 col-lg-4 p-5 ing-orange-bg white-font">
                     <div class="row  h-100 justify-content-center align-items-center">
-                        <h1>Welcome to Our Application </h1>
+
+                        <h1>
+                            <p><i class="fa fa-user-md brandlogo" aria-hidden="true"></i></p>Welcome to <br>Care
+                            Insurance
+                            Ltd
+                        </h1>
                     </div>
                 </div>
                 <div class="col mx-auto">
@@ -18,18 +23,13 @@
                                         user name and
                                         Password</i></p>
                                 <div class="form-group">
-                                    <label for="uname1">Username<b class="text-danger">*</b></label>
-                                    <!-- {{loginForm.controls.username.touched | json}} -->
-                                    <!-- {{loginForm.controls.password.invalid | json}} -->
-                                    <!-- *ngIf="loginForm?.controls?.username?.touched && loginForm?.controls?.username?.errors?.required" -->
-                                    <!-- {{loginForm?.controls?.username?.errors | json}} -->
+                                    <label for="uname1">User Id<b class="text-danger">*</b></label>
                                     <input type="text" formControlName="username"
                                         [ngClass]="{'is-invalid': loginForm?.controls?.username?.touched && loginForm?.controls?.username?.invalid}"
                                         class="form-control" name="uname1" id="uname1">
                                     <div class="invalid-feedback">
-                                        <span *ngIf="loginForm?.controls?.username?.errors?.required">Oops, you
-                                            missed
-                                            this one.</span> </div>
+                                        <span *ngIf="loginForm?.controls?.username?.errors?.required">Please enter
+                                            correct userId.</span> </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="pwd1">Password<b class="text-danger">*</b></label>
@@ -37,21 +37,21 @@
                                         [ngClass]="{'is-invalid': loginForm?.controls?.password?.touched && loginForm?.controls?.password?.invalid}"
                                         class="form-control " id="pwd1" autocomplete="new-password">
                                     <div class="invalid-feedback">
-                                        <span *ngIf="loginForm?.controls?.password?.errors?.required">Enter your
-                                            password too!</span> </div>
+                                        <span *ngIf="loginForm?.controls?.password?.errors?.required">Please enter
+                                            correct password.</span> </div>
                                 </div>
                                 <div class="form-group clearfix">
-                                    <button [disabled]="loginForm.invalid" class="btn btn-primary btn-block float-right"
+                                    <button [disabled]="loginForm.invalid" class="btn btn-success btn-block float-right"
                                         id="btnLogin">Sign in <i this.loginSpin=false; class="fa fa-refresh fa-spin"
                                             *ngIf="loginSpin"></i></button>
                                 </div>
-                                <div class="form-group clearfix">
-                                    <p class="btn register"> <i>Don't have an account?
+                                <!-- <div class="form-group clearfix">
+                                    <p class="btn btn-success register"> <i>Don't have an account?
                                             <b><a href="javascript:void(0)" (click)="toggleForm()">Sign
                                                     Up</a></b></i></p>
-                                </div>
+                                </div> -->
                             </form>
-                            <form class="form" [formGroup]="registerForm" (ngSubmit)="registerFormSubmit()"
+                            <!-- <form class="form" [formGroup]="registerForm" (ngSubmit)="registerFormSubmit()"
                                 *ngIf="!toggleLoginReg" role="form" autocomplete="off" id="formLogin">
                                 <h2 class="text-center mb-5">Account Registration</h2>
                                 <div class="form-row mb-3"> <small><span>Fields marked with <span
@@ -86,13 +86,7 @@
                                         <span *ngIf="registerForm?.controls?.emailid?.errors?.email">
                                             Entered Email is wrong!</span>
                                     </div>
-                                </div>
-                                <!-- <div class="form-group clearfix">
-                                    <button [disabled]="registerForm.invalid"
-                                        class="btn btn-primary btn-block float-right" id="btnLogin">Register <i
-                                            class="fa fa-refresh fa-spin" *ngIf="registerSpin"></i></button>
-
-                                </div> -->
+                                </div>                              
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <button (click)="resetRegiserform()" class="btn btn-primary btn-block"
@@ -100,7 +94,7 @@
                                         </button>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <button class="btn btn-info btn-block" (click)="registerFormSubmit()"
+                                        <button class="btn btn-success btn-block" (click)="registerFormSubmit()"
                                             [disabled]="registerForm.invalid" id="btnLogin">Register <i
                                                 class="fa fa-refresh fa-spin" *ngIf="registerSpin"></i></button>
                                     </div>
@@ -112,7 +106,7 @@
                                 </div>
                                 <div class="form-row"></div>
 
-                            </form>
+                            </form> -->
                         </div>
 
                     </div>
